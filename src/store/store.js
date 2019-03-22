@@ -3,6 +3,10 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 Vue.use(Vuex);
 
+import vuexAlong from 'vuex-along'
+
+vuexAlong.watchSession(['token','user'], true);
+vuexAlong.onlySession(true);
 const state = {
   token: "",       //用户身份token验证信息
   user:{}           //用户的账号等信息
@@ -42,7 +46,7 @@ const actions = {
 //           console.log(this.$store.getters.getToken.name)
 
 const store = new Vuex.Store({
-  state,getters,mutations,actions
+  state,getters,mutations,actions,plugins: [vuexAlong]
 });
 
 export default store;

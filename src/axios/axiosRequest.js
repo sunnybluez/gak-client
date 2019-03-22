@@ -103,20 +103,20 @@ export const authenticateHttp = (token,_this,returnLogin) => {
   // return;
 };
 
-export const updateStudentInfoHttp = () => {
+export const getStudentIdHttp = (_this,email,storeId) => {
 
   // _this.$Loading.start();
 
   axios({
-    method: 'post',
-    url: '/studentInfo/updateStuInfo',
+    method: 'get',
+    url: '/studentInfo/getStudentId',
+    params:{
+      email:email
+    }
   }).then((response) => {
-    console.log(response.data)
-
-
+    storeId(response.data);
   }).catch((error) => {
-
-
+    _this.$Message.warning(error.response.data.message);
   })
 
 };

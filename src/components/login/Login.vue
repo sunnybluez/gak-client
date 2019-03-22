@@ -182,6 +182,7 @@
       this.$refs[name].resetFields();
     },
     storeVuex(token,user){
+      // console.log(1,user);
       this.$store.dispatch("setToken",token);
       this.$store.dispatch("setUser", user);
     },
@@ -209,6 +210,13 @@
     //     console.log(error);
     //   });
 
+    // console.log(window.sessionStorage)
+    console.log(this.$store.getters.getToken);
+    console.log(this.$store.getters.getUser);
+    if (this.$store.getters.getToken) {
+
+      // this.$router.push("/" + this.$store.getters.getUser.identity.toLowerCase() + "Home");
+    }
   }
 }
 </script>
