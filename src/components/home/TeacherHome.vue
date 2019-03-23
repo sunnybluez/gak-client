@@ -12,7 +12,7 @@
           <div class="person-div">
             <div class="person-div-item">
 
-              <router-link to="/" style="display: inline-block">
+              <router-link to="/teacherHome/corCourse" style="display: inline-block">
                 <MenuItem name="1">
                   <Icon type="ios-book" />
                   <a style="color: black">创建/发布课程</a>
@@ -43,7 +43,7 @@
 
             <div class="person-div-item">
               <Dropdown>
-                <Avatar size="large">S</Avatar>
+                <Avatar size="large">U</Avatar>
                 <DropdownMenu slot="list">
                   <DropdownItem>个人信息</DropdownItem>
                   <DropdownItem>登出</DropdownItem>

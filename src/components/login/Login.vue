@@ -188,7 +188,7 @@
     },
     setRouter() {
       let identity = this.$store.getters.getUser.identity;
-      // console.log(identity);
+      console.log(identity);
       if (identity == "STUDENT") {
         this.$router.push("/studentHome")
       } else if (identity == "TEACHER") {

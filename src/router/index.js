@@ -6,9 +6,11 @@ import studentHome from '@/components/home/StudentHome'
 import teacherHome from '@/components/home/TeacherHome'
 import managerHome from '@/components/home/ManagerHome'
 import authentication from '@/components/authentication/Authentication'
-import navigationSelect from '../components/student/navigation/SelectCourseNavigation'
-import navigationMyCourse from '../components/student/navigation/MyCourseNavigation'
 
+import navigationSelect from '@/components/student/navigation/SelectCourseNavigation'
+import navigationMyCourse from '@/components/student/navigation/MyCourseNavigation'
+
+import teaNavCORCourse from  '@/components/teacher/navigation/CORCourseNavigation'
 
 Vue.use(Router)
 // Router.beforeEach((to, from, next) => {
@@ -67,7 +69,16 @@ export default new Router({
       path: '/teacherHome',
       components:{
         'homePage':teacherHome
-      }
+      },
+
+      children:[
+        {
+          path:'/teacherHome/corCourse',
+          components:{
+            navigation:teaNavCORCourse
+          }
+        }
+      ]
     },
     {
       path: '/managerHome',
