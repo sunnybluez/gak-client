@@ -16,7 +16,7 @@ import reelectCourse from '../components/student/content/ReelectCourse'
 
 import teaNavCORCourse from  '@/components/teacher/navigation/CORCourseNavigation'
 import teaCreateCourse from  '../components/teacher/content/CreCourseDetail'
-import teaReleCourse from  '../components/teacher/content/ReleCourseDetail'
+import teaReleaseCourse from  '../components/teacher/content/ReleCourseDetail'
 
 
 Vue.use(Router)
@@ -115,7 +115,7 @@ export default new Router({
             {
               path:"/teacherHome/corCourse/releaseCourse",
               components:{
-                "content":teaReleCourse
+                "content":teaReleaseCourse
               }
             }
           ]

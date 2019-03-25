@@ -11,7 +11,7 @@
 
 <script>
     export default {
-        name: "table",
+        name: "table-expand",
       props: {
         row: Object
       }

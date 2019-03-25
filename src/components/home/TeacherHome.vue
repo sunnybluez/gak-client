@@ -20,7 +20,6 @@
               </router-link>
               <router-link to="/" style="display: inline-block">
                 <MenuItem name="2">
-
                   <Icon type="ios-person" />
                   <a style="color: black">课程管理</a>
                 </MenuItem>
@@ -43,10 +42,12 @@
 
             <div class="person-div-item">
               <Dropdown>
-                <Avatar size="large">U</Avatar>
+                <Avatar size="large">{{name}}</Avatar>
                 <DropdownMenu slot="list">
                   <DropdownItem>个人信息</DropdownItem>
-                  <DropdownItem>登出</DropdownItem>
+                  <DropdownItem >
+                    <p @click="logOut">登出</p>
+                  </DropdownItem>
 
                 </DropdownMenu>
               </Dropdown>
@@ -73,7 +74,25 @@
 
 <script>
     export default {
-        name: "TeacherHome"
+        name: "TeacherHome",
+      data(){
+        return{
+          name:"Teacher"
+        }
+      },
+      methods:{
+        logOut() {
+          // console.log(11)
+          this.$store.dispatch("setUser", {});
+          this.$store.dispatch("setToken", "");
+          this.$router.push("/login");
+        }
+      },
+      mounted(){
+        console.log(this.$store.getters.getUser.email)
+        console.log(this.$store.getters.getUser.id)
+        console.log(this.name);
+      }
     }
 </script>
 

@@ -44,7 +44,7 @@
 
               <div class="person-div-item">
                 <Dropdown>
-                  <Avatar size="large">S</Avatar>
+                  <Avatar size="large">{{name}}</Avatar>
                   <DropdownMenu slot="list">
                     <DropdownItem>个人信息</DropdownItem>
                     <DropdownItem >
@@ -80,7 +80,7 @@
 
       data() {
           return{
-
+            name:"Student"
           }
       },
       methods:{
