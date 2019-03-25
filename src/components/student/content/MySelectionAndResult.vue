@@ -250,7 +250,7 @@
             this.dataSelected.splice(index, 1);
             console.log(data);
           }).catch((error)=>{
-            this.$Message.warning(error);
+            this.$Message.error(error);
           })
         },
         reelectCourse(index) {
@@ -262,7 +262,7 @@
             this.dataOngoing.push(reelect[0]);
             console.log(data);
           }).catch((error)=>{
-            this.$Message.warning(error);
+            this.$Message.error(error);
           })
         },
         dropOngoingCourse(index) {
@@ -273,7 +273,7 @@
             this.dataOngoing.splice(index, 1);
             console.log(data);
           }).catch((error)=>{
-            this.$Message.warning(error);
+            this.$Message.error(error);
           })
         }
 

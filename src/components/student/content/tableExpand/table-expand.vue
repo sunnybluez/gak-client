@@ -1,7 +1,7 @@
 <template>
   <div>
     <Row class="expand-row">
-      <Col span="8">
+      <Col span="13">
         <span class="expand-key">课程描述: </span>
         <span class="expand-value">{{ row.description }}</span>
       </Col>

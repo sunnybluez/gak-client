@@ -88,7 +88,7 @@
           this.data.splice(index, 1);
           console.log(data);
         }).catch((error)=>{
-          this.$Message.warning(error);
+          this.$Message.error(error);
         })
 
       }
