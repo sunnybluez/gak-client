@@ -5,9 +5,8 @@
 </template>
 
 <script>
-  import expandRow from './table-expand.vue';
-  import {getAllCanSelectCourseHttp} from "../../../axios/studentRequest";
-  import {selectCourseHttp} from "../../../axios/studentRequest";
+  import expandRow from './tableExpand/table-expand.vue';
+  import {getAllCanSelectCourseHttp,selectCourseHttp} from "../../../axios/studentRequest";
 
     export default {
         name: "SelectCourseDetail",

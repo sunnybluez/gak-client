@@ -8,7 +8,7 @@
             <Icon type="ios-book" />
             通选列表
           </template>
-          <MenuItem name="1-1"><router-link :to="{path:'/studentHome/selectCourse/select',query:{term:'SPRING2019'}}"><p>2019-Spring</p></router-link></MenuItem>
+          <router-link :to="{path:'/studentHome/selectCourse/select',query:{term:'SPRING2019'}}"><MenuItem name="1-1"><p>2019-Spring</p></MenuItem></router-link>
           <!--<MenuItem name="1-2"><p>2018-Autumn</p></MenuItem>-->
           <!--<MenuItem name="1-3"><p>2018-Spring</p></MenuItem>-->
 
@@ -18,16 +18,16 @@
             <Icon type="ios-book" />
             补选列表
           </template>
-          <MenuItem name="2-1"><router-link :to="{path:'/studentHome/selectCourse/result',query:{term:'SPRING2019'}}"><p>2019-Spring</p></router-link></MenuItem>
+          <router-link :to="{path:'/studentHome/selectCourse/reelect',query:{term:'SPRING2019'}}"><MenuItem name="2-1"><p>2019-Spring</p></MenuItem></router-link>
           <!--<MenuItem name="2-2"><p>2018-Autumn</p></MenuItem>-->
           <!--<MenuItem name="2-3"><p>2018-Spring</p></MenuItem>-->
         </Submenu>
         <Submenu name="3">
           <template slot="title">
             <Icon type="ios-book" />
-            选课结果
+            选课结果/退课
           </template>
-          <MenuItem name="3-1"><router-link :to="{path:'/studentHome/selectCourse/reelect',query:{term:'SPRING2019'}}"><p>2019-Spring</p></router-link></MenuItem>
+          <router-link :to="{path:'/studentHome/selectCourse/result',query:{term:'SPRING2019'}}"><MenuItem name="3-1"><p>2019-Spring</p></MenuItem></router-link>
           <!--<MenuItem name="3-2"><p>2018-Autumn</p></MenuItem>-->
           <!--<MenuItem name="3-3"><p>2018-Spring</p></MenuItem>-->
         </Submenu>

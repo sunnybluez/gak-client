@@ -16,7 +16,7 @@
                 <router-link to="/studentHome/selectCourse" style="display: inline-block">
                   <MenuItem name="1">
                     <Icon type="ios-book" />
-                    <p style="display: inline">通选/补选</p>
+                    <p style="display: inline">通补选/退课</p>
                   </MenuItem>
                 </router-link>
                 <router-link to="/studentHome/myCourse" style="display: inline-block">
