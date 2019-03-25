@@ -16,14 +16,14 @@
                 <router-link to="/studentHome/selectCourse" style="display: inline-block">
                   <MenuItem name="1">
                     <Icon type="ios-book" />
-                    <a style="color: black">学期选课</a>
+                    <p style="display: inline">通选/补选</p>
                   </MenuItem>
                 </router-link>
                 <router-link to="/studentHome/myCourse" style="display: inline-block">
                   <MenuItem name="2">
 
                     <Icon type="ios-person" />
-                    <a style="color: black">我的课程</a>
+                    <p style="display: inline">我的课程</p>
                   </MenuItem>
                 </router-link>
                 <router-link to="/studentHome/selectCourse" style="display: inline-block">
@@ -47,7 +47,9 @@
                   <Avatar size="large">S</Avatar>
                   <DropdownMenu slot="list">
                     <DropdownItem>个人信息</DropdownItem>
-                    <DropdownItem>登出</DropdownItem>
+                    <DropdownItem >
+                      <p @click="logOut">登出</p>
+                    </DropdownItem>
 
                   </DropdownMenu>
                 </Dropdown>
@@ -60,16 +62,7 @@
         </Affix>
 
       </Header>
-      <Layout class="main-content">
-        <Sider style="width: 260px;min-width:0px;max-width: 1000px;flex:none;padding: 5px" class="main-content-menu" hide-trigger>
-          <router-view name="navigation" class="navigation"></router-view>
-        </Sider>
-        <Content class="main-content-con" >
-          <div>
-            sadasd
-          </div>
-        </Content>
-      </Layout>
+      <router-view name="student-all-nav" ></router-view>
       <Footer >
         <div class="footer">
           @Developer  ZWZ
@@ -81,7 +74,6 @@
 </template>
 
 <script>
-  import {getStudentIdHttp} from "../../axios/axiosRequest";
 
     export default {
         name: "StudentHome",
@@ -92,16 +84,16 @@
           }
       },
       methods:{
-        storeId(id){
-          let nUser = this.$store.getters.getUser;
-          nUser.id = id;
-          this.$store.dispatch("setUser", nUser);
+        logOut() {
+          // console.log(11)
+          this.$store.dispatch("setUser", {});
+          this.$store.dispatch("setToken", "");
+          this.$router.push("/login");
         }
       },
       mounted(){
           console.log(this.$store.getters.getUser.email)
-        getStudentIdHttp(this,this.$store.getters.getUser.email, this.storeId);
-
+          console.log(this.$store.getters.getUser.id)
       }
     }
 </script>
@@ -128,35 +120,5 @@
     background: #fff;
     text-align: center;
 
-  }
-  .main-content {
-    background: blanchedalmond;
-    width: 70%;
-    margin: 10px auto;
-    min-height: 500px;
-  }
-  .main-content-menu {
-    width: 30%;
-    text-align: center;
-  }
-  .main-content-con{
-    width: 60%;
-    text-align: center;
-  }
-  .main-content-menu,.main-content-con{
-    border: 1px solid #EBEBEB;
-    border-radius: 10px;
-    box-shadow: 0 0 4px rgba(6, 10, 29, 0.04);
-    background: #fff;
-    margin: 10px 20px;
-    /*display: inline;*/
-  }
-
-  .navigation {
-    margin: 0 auto;
-    width: 80%;
-  }
-  .navigation:after {
-    content: none;
   }
 </style>

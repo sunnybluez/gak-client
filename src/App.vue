@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+
     <router-view name="authenticationPage"></router-view>
     <router-view name="homePage"></router-view>
     <router-view name="introduction" class="left"></router-view>

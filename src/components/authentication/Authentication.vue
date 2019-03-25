@@ -16,14 +16,18 @@
 
     export default {
         name: "Authentication",
-      methods:{
-        returnLogin() {
-          this.$router.push("/login")
-        }
-      },
       mounted() {
-        // console.log(111,this.$route.query.token)
-        authenticateHttp(this.$route.query.token,this,this.returnLogin)
+        authenticateHttp(this.$route.query.token).then(data=>{
+          setTimeout(() => {
+            this.$Message.success(data);
+          }, 500);
+          setTimeout(() => {
+            this.$router.push("/login")
+          }, 2500);
+
+        }).catch(err=>{
+          console.log(err);
+        })
       }
     }
 </script>

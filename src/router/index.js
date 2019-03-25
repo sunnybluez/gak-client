@@ -7,10 +7,17 @@ import teacherHome from '@/components/home/TeacherHome'
 import managerHome from '@/components/home/ManagerHome'
 import authentication from '@/components/authentication/Authentication'
 
-import navigationSelect from '@/components/student/navigation/SelectCourseNavigation'
-import navigationMyCourse from '@/components/student/navigation/MyCourseNavigation'
+import stuMyCourseNav from '@/components/student/navigation/MyCourseNavigation'
+import stuSeOReCourseNav from '../components/student/navigation/SeOReCourseNavgation';
+
+import selectContent from '../components/student/content/SelectCourseDetail'
+import selectResult from '../components/student/content/MySelectionAndResult'
+import reelectCourse from '../components/student/content/ReelectCourse'
 
 import teaNavCORCourse from  '@/components/teacher/navigation/CORCourseNavigation'
+import teaCreateCourse from  '../components/teacher/content/CreCourseDetail'
+import teaReleCourse from  '../components/teacher/content/ReleCourseDetail'
+
 
 Vue.use(Router)
 // Router.beforeEach((to, from, next) => {
@@ -47,20 +54,40 @@ export default new Router({
       components:{
         'homePage':studentHome
       },
-      // alias:'',
+      redirect:'/studentHome/myCourse',
       children:[
+
         {
-          path: '/studentHome/selectCourse',
-          components: {
-            navigation: navigationSelect
+          path:'/studentHome/myCourse',
+          components:{
+            "student-all-nav":stuMyCourseNav
           }
         },
         {
-
-          path:'/studentHome/myCourse',
+          path:'/studentHome/selectCourse',
           components:{
-            navigation:navigationMyCourse
-          }
+            "student-all-nav":stuSeOReCourseNav
+          },
+          children:[
+            {
+              path: '/studentHome/selectCourse/select',
+              components: {
+                "content": selectContent
+              }
+            },
+            {
+              path: '/studentHome/selectCourse/result',
+              components: {
+                "content": selectResult
+              }
+            },
+            {
+              path: '/studentHome/selectCourse/reelect',
+              components: {
+                "content": reelectCourse
+              }
+            },
+          ]
         }
       ]
 
@@ -75,8 +102,23 @@ export default new Router({
         {
           path:'/teacherHome/corCourse',
           components:{
-            navigation:teaNavCORCourse
-          }
+            "teacher-all-nav":teaNavCORCourse
+          },
+          redirect:"/teacherHome/corCourse/createCourse",
+          children:[
+            {
+              path:"/teacherHome/corCourse/createCourse",
+              components:{
+                "content":teaCreateCourse
+              }
+            },
+            {
+              path:"/teacherHome/corCourse/releaseCourse",
+              components:{
+                "content":teaReleCourse
+              }
+            }
+          ]
         }
       ]
     },

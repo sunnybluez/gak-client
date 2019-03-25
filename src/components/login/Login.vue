@@ -69,6 +69,7 @@
 
 
     </div>
+
   </div>
 
 
@@ -159,20 +160,39 @@
 
       this.$refs[name].validate((valid) => {
         if (valid) {
-          loginHttp(this.formInline, this, this.storeVuex, this.setRouter);
+          this.$Loading.start();
+          loginHttp(this.formInline).then(data=>{
+            let token = data.token;
+            let user = {email:this.formInline.user,
+              identity: this.formInline.identity.toUpperCase(),
+              id: data.id
+            };
+            this.$store.dispatch("setToken",token);
+            this.$store.dispatch("setUser", user);
+            this.$Loading.finish();
+
+            this.setRouter();
+          }).then(err=>{this.$Message.warning(err)});
         } else {
           this.$Message.warning("请补充完整信息");
         }
-      })
+        this.$Loading.finish();
+
+      });
       // this.$router.push("/home")
-
     },
-
     // //注册方法
     handleRegister (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          registerHttp(this.formCustom, this);
+          this.$Loading.start();
+          registerHttp(this.formCustom).then(data=>{
+            this.$Message.success(data);
+          }).catch(err=>{
+            this.$Message.warning(err);
+          }).finally(()=>{
+            this.$Loading.finish();
+          });
         } else {
           this.$Message.warning("请补充完整信息");
         }
@@ -180,11 +200,6 @@
     },
     handleReset (name) {
       this.$refs[name].resetFields();
-    },
-    storeVuex(token,user){
-      // console.log(1,user);
-      this.$store.dispatch("setToken",token);
-      this.$store.dispatch("setUser", user);
     },
     setRouter() {
       let identity = this.$store.getters.getUser.identity;

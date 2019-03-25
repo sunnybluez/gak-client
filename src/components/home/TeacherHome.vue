@@ -59,16 +59,9 @@
       </Affix>
 
     </Header>
-    <Layout class="main-content">
-      <Sider style="width: 260px;min-width:0px;max-width: 1000px;flex:none;padding: 5px" class="main-content-menu" hide-trigger>
-        <router-view name="navigation" class="navigation"></router-view>
-      </Sider>
-      <Content class="main-content-con" >
-        <div>
-          sadasd
-        </div>
-      </Content>
-    </Layout>
+
+    <router-view name="teacher-all-nav" ></router-view>
+
     <Footer >
       <div class="footer">
         @Developer  ZWZ
@@ -105,35 +98,5 @@
     background: #fff;
     text-align: center;
 
-  }
-  .main-content {
-    background: blanchedalmond;
-    width: 70%;
-    margin: 10px auto;
-    min-height: 500px;
-  }
-  .main-content-menu {
-    width: 30%;
-    text-align: center;
-  }
-  .main-content-con{
-    width: 60%;
-    text-align: center;
-  }
-  .main-content-menu,.main-content-con{
-    border: 1px solid #EBEBEB;
-    border-radius: 10px;
-    box-shadow: 0 0 4px rgba(6, 10, 29, 0.04);
-    background: #fff;
-    margin: 10px 20px;
-    /*display: inline;*/
-  }
-
-  .navigation {
-    margin: 0 auto;
-    width: 80%;
-  }
-  .navigation:after {
-    content: none;
   }
 </style>
