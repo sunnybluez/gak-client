@@ -1,8 +1,6 @@
 import axios from "./axios-init";
 
 
-
-
 export const getAllMyOnCourseByTerm =  (studentId,term)=>{
 
   // let studentIds = parseInt(studentId);

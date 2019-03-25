@@ -172,7 +172,9 @@
             this.$Loading.finish();
 
             this.setRouter();
-          }).then(err=>{this.$Message.warning(err)});
+            // console.log(222)
+          }).catch(err=>{
+            this.$Message.warning(err);});
         } else {
           this.$Message.warning("请补充完整信息");
         }
