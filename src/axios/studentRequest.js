@@ -179,7 +179,7 @@ export const dropCourseHttp = (studentId, courseReleaseId) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'post',
-      url: '/courseOperation/drop',
+      url: '/courseOperation/dropCourse',
       data:{
         studentId:parseInt(studentId),
         courseReleaseId: parseInt(courseReleaseId)
