@@ -15,8 +15,9 @@ import selectResult from '../components/student/content/MySelectionAndResult'
 import reelectCourse from '../components/student/content/ReelectCourse'
 
 import teaNavCORCourse from  '@/components/teacher/navigation/CORCourseNavigation'
-import teaCreateCourse from  '../components/teacher/content/CreCourseDetail'
-import teaReleaseCourse from  '../components/teacher/content/ReleCourseDetail'
+import teaCreateCourse from '../components/teacher/content/coromCourse/CreCourseDetail'
+import teaReleaseCourse from '../components/teacher/content/coromCourse/ReleCourseDetail'
+import courseStateManage from '../components/teacher/content/coromCourse/CourseStateManage'
 
 
 Vue.use(Router)
@@ -117,6 +118,13 @@ export default new Router({
               components:{
                 "content":teaReleaseCourse
               }
+              },
+            {
+              path:"/teacherHome/corCourse/courseStateManage",
+              components:{
+                "content":courseStateManage
+              }
+
             }
           ]
         }

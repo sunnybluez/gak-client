@@ -15,6 +15,9 @@
           <router-link to="/teacherHome/corCourse/releaseCourse">
             <MenuItem name="1-2">发布课程</MenuItem>
           </router-link>
+          <router-link to="/teacherHome/corCourse/courseStateManage">
+            <MenuItem name="1-3">课程状态管理</MenuItem>
+          </router-link>
 
         </Submenu>
 

@@ -15,7 +15,7 @@
     <component :course-list="courseCreateList" :is="currentStep"
                @getCurrentCourse="getCurrentCourse"
                @getGradeInfo="getGradeInfo"></component>
-  </div>
+  </div>qa
   <div class="step-next">
     <Button type="primary" @click="nextStep">下一步</Button>
   </div>
@@ -25,9 +25,9 @@
 </template>
 
 <script>
-  import {getAllMyPassCourse,releaseCourseHttp} from "../../../axios/teacherRequest";
-  import selectCourse from "./releaseSteps/StepSelectCourse";
-  import selectGrade from "./releaseSteps/StepSelectGrade";
+  import {getAllMyPassCourse,releaseCourseHttp} from "../../../../axios/teacherRequest";
+  import selectCourse from "../releaseSteps/StepSelectCourse";
+  import selectGrade from "../releaseSteps/StepSelectGrade";
 
     export default {
         name: "ReleCourseDetail",
@@ -92,7 +92,6 @@
 
         getAllMyPassCourse(teacherId).then(data=>{
           this.courseCreateList = data;
-          // console.log(111,data)
         }).catch(err=>{
           console.log(err);
         })

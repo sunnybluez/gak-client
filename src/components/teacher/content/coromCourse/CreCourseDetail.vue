@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import {createCourseHttp} from "../../../axios/teacherRequest";
+  import {createCourseHttp} from "../../../../axios/teacherRequest";
     export default {
         name: "CreCourseDetail",
       data(){
