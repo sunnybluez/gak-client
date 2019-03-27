@@ -8,17 +8,19 @@
             <a style="display: block;margin: 5px auto" v-for="(value,index) in courseWareList" :key="index"  :href="'http://localhost:8080/'+ value.path" target="_blank">{{value.name}}</a>
           </div>
         </TabPane>
-        <TabPane label="论坛" name="bbs" icon="ios-people">论坛</TabPane>
+        <TabPane label="论坛" name="bbs" icon="ios-people"><Bbs :courseId="this.$route.query.courseReleaseId"></Bbs></TabPane>
       </Tabs>
     </div>
 </template>
 
 <script>
   import  {getCourseWareListHttp} from  "../../../../axios/publicResourceRequest"
+  import Bbs from "../../../bbs/Bbs";
 
   export default {
         name: "partialCourse",
-      data(){
+    components: {Bbs},
+    data(){
         return{
           courseReleaseId: 0,
           courseInfo:{},

@@ -248,3 +248,43 @@ export const postCourseExcelHttp = (file,courseReleaseId)=>{
   });
 }
 
+export const getTeacherInfoHttp = (teacherId) =>{
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: '/teacherInfo/getTeacherDetail',
+      params:{
+        id:parseInt(teacherId),
+      }
+    }).then((response) => {
+      // callback(response.data);
+      resolve(response.data);
+    }).catch((error) => {
+      // _this.$Message.warning(error.response.data.message);
+      reject(error.response.data.message);
+    })
+  });
+}
+export const updateTeacherInfoHttp = (teacherId, name, age, sex, phoneNum) => {
+
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'post',
+      url: '/teacherInfo/updateTeacherInfo',
+      data: {
+        id: parseInt(teacherId),
+        name,
+        age:parseInt(age),
+        sex,
+        phoneNum:parseInt(phoneNum)
+      }
+    }).then((response) => {
+      resolve(response.data);
+    }).catch((error) => {
+      reject(error.response.data.message);
+
+    })
+  });
+
+};
+

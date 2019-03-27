@@ -70,7 +70,7 @@
           </Upload>
         </div>
       </TabPane>
-      <TabPane label="论坛" name="bbs" icon="ios-people"></TabPane>
+      <TabPane label="论坛" name="bbs" icon="ios-people"><Bbs :courseId="this.$route.query.courseReleaseId"></Bbs></TabPane>
     </Tabs>
   </div>
 </template>
@@ -78,8 +78,10 @@
 <script>
   import {postCourseWareHttp,postCourseExcelHttp} from "../../../../axios/teacherRequest";
   import  {getCourseWareListHttp,getHomeworkListHttp,addHomeworkHttp,getCourseScoreExcelHttp} from  "../../../../axios/publicResourceRequest"
+  import Bbs from "../../../bbs/Bbs";
     export default {
         name: "CompleteCourse",
+      components:{Bbs},
       data(){
         return{
           courseReleaseId: 0,

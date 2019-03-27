@@ -59,7 +59,9 @@
               </p>
           </div>
         </TabPane>
-        <TabPane label="论坛" name="bbs" icon="ios-people"></TabPane>
+        <TabPane label="论坛" name="bbs" icon="ios-people">
+          <Bbs :courseId="this.$route.query.courseReleaseId"></Bbs>
+        </TabPane>
       </Tabs>
     </div>
 </template>
@@ -67,9 +69,11 @@
 <script>
   import  {getCourseWareListHttp,getHomeworkListHttp,getCourseScoreExcelHttp} from  "../../../../axios/publicResourceRequest"
   import {uploadStudentWorkHttp,getSingleStudentWorkHttp} from "../../../../axios/studentRequest"
+  import Bbs from "../../../bbs/Bbs";
 
     export default {
         name: "completeCourseS",
+      components: {Bbs},
       data(){
         return {
           courseReleaseId: 0,
@@ -205,5 +209,15 @@
     display: inline-block;
     width: 20%;
     margin: auto;
+  }
+
+
+  .post-div {
+    width: 40%;
+    /*padding: px;*/
+    margin: 10px auto;
+  }
+  .post-div >div{
+    cursor: pointer;
   }
 </style>

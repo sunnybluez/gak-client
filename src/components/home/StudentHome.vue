@@ -28,12 +28,6 @@
                 </router-link>
                 <router-link to="/studentHome/selectCourse" style="display: inline-block">
                   <MenuItem name="3">
-                    <Icon type="ios-people" />
-                    论坛
-                  </MenuItem>
-                </router-link>
-                <router-link to="/studentHome/selectCourse" style="display: inline-block">
-                  <MenuItem name="4">
                     <Icon type="ios-pie" />
                     统计信息
                   </MenuItem>
@@ -46,7 +40,10 @@
                 <Dropdown>
                   <Avatar size="large">{{name}}</Avatar>
                   <DropdownMenu slot="list">
-                    <DropdownItem>个人信息</DropdownItem>
+                    <router-link to="/studentHome/personalInfo">
+                      <DropdownItem>个人信息</DropdownItem>
+                    </router-link>
+
                     <DropdownItem >
                       <p @click="logOut">登出</p>
                     </DropdownItem>

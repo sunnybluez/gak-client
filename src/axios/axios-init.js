@@ -9,7 +9,7 @@ axios.interceptors.request.use(
   config => {
     console.log("header初始化");
     if (store.getters.getToken) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
-      console.log("header添加token")
+      // console.log("header添加token")
       config.headers.Authorization = `${store.getters.getToken}`;
     }
     return config;

@@ -253,3 +253,63 @@ export const getSingleStudentWorkHttp = (studentId,courseReleaseId,homeworkId) =
     })
   });
 }
+
+export const getStudentInfoHttp = (studentId) =>{
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: '/studentInfo/getStudentDetail',
+      params:{
+        id:parseInt(studentId),
+      }
+    }).then((response) => {
+      // callback(response.data);
+      resolve(response.data);
+    }).catch((error) => {
+      // _this.$Message.warning(error.response.data.message);
+      reject(error.response.data.message);
+    })
+  });
+}
+
+export const updateStudentInfoHttp = (studentId, name, age, sex, phoneNum, gradeType) =>{
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'post',
+      url: '/studentInfo/updateStudentInfo',
+      data:{
+        id: parseInt(studentId),
+       name,
+        age:parseInt(age),
+        sex,
+        phoneNum:parseInt(phoneNum),
+        grade: gradeType
+      }
+    }).then((response) => {
+      resolve(response.data);
+    }).catch((error) => {
+      reject(error.response.data.message);
+
+    })
+  });
+
+}
+
+export const cancelAccountHttp = (studentId)=>{
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: '/cancelAccount',
+      params:{
+        id: parseInt(studentId),
+      }
+    }).then((response) => {
+      resolve(response.data);
+    }).catch((error) => {
+      reject(error.response.data.message);
+
+    })
+  });
+
+}
+

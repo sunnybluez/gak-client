@@ -7,6 +7,9 @@ import teacherHome from '@/components/home/TeacherHome'
 import managerHome from '@/components/home/ManagerHome'
 import authentication from '@/components/authentication/Authentication'
 
+import studentInfo from "../components/personalInfo/StudentInfo";
+import teacherInfo from "../components/personalInfo/TeacherInfo";
+
 import stuMyCourseNav from '../components/student/navigation/MyCourseNavigation'
 import stuSeOReCourseNav from '../components/student/navigation/SeOReCourseNavgation';
 import selectContent from '../components/student/content/serereCourse/SelectCourseDetail'
@@ -110,6 +113,13 @@ export default new Router({
               }
             },
           ]
+        },
+        {
+          path:'/studentHome/personalInfo',
+          components:{
+            "student-all-nav":studentInfo
+          },
+
         }
       ]
 
@@ -162,6 +172,13 @@ export default new Router({
               }
             }
           ]
+        },
+        {
+          path:'/teacherHome/personalInfo',
+          components:{
+            "teacher-all-nav":teacherInfo
+          },
+
         }
       ]
     },
