@@ -193,3 +193,63 @@ export const dropCourseHttp = (studentId, courseReleaseId) => {
   });
 
 };
+
+export const uploadStudentWorkHttp = (file,homeworkId,courseReleaseId,studentId)=>{
+  let forms = new FormData();
+  forms.append("file", file);
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'post',
+      url: '/homework/uploadStudentWork',
+      headers:{'Content-Type':'multipart/form-data'},
+      params:{
+        courseReleaseId:courseReleaseId,
+        homeworkId:homeworkId,
+        studentId, studentId
+      },
+      data:forms
+    }).then((response) => {
+      resolve(response.data);
+    }).catch((error) => {
+      reject(error.response.data.message);
+    })
+  });
+}
+
+export const getAllMyStudentWorkHttp = (studentId,courseReleaseId) =>{
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: '/homework/getAllStudentWork',
+      params:{
+        studentId:parseInt(studentId),
+        courseReleaseId: parseInt(courseReleaseId)
+      }
+    }).then((response) => {
+      // callback(response.data);
+      resolve(response.data);
+    }).catch((error) => {
+      // _this.$Message.warning(error.response.data.message);
+      reject(error.response.data.message);
+    })
+  });
+}
+export const getSingleStudentWorkHttp = (studentId,courseReleaseId,homeworkId) =>{
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: '/homework/getSingleStudentWork',
+      params:{
+        studentId:parseInt(studentId),
+        courseReleaseId: parseInt(courseReleaseId),
+        homeworkId: parseInt(homeworkId)
+      }
+    }).then((response) => {
+      // callback(response.data);
+      resolve(response.data);
+    }).catch((error) => {
+      // _this.$Message.warning(error.response.data.message);
+      reject(error.response.data.message);
+    })
+  });
+}

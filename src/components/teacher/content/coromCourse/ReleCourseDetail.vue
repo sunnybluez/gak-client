@@ -15,7 +15,7 @@
     <component :course-list="courseCreateList" :is="currentStep"
                @getCurrentCourse="getCurrentCourse"
                @getGradeInfo="getGradeInfo"></component>
-  </div>qa
+  </div>
   <div class="step-next">
     <Button type="primary" @click="nextStep">下一步</Button>
   </div>
@@ -26,8 +26,8 @@
 
 <script>
   import {getAllMyPassCourse,releaseCourseHttp} from "../../../../axios/teacherRequest";
-  import selectCourse from "../releaseSteps/StepSelectCourse";
-  import selectGrade from "../releaseSteps/StepSelectGrade";
+  import selectCourse from "./releaseSteps/StepSelectCourse";
+  import selectGrade from "./releaseSteps/StepSelectGrade";
 
     export default {
         name: "ReleCourseDetail",
@@ -40,30 +40,35 @@
             current:0,
             currentStep:"step1",
             courseCreateList:[],
-            courseSelected: null,
-            grade:null,
-            term:null,
-            limitNum:0
+            courseSelected: undefined,
+            grade:undefined,
+            term:undefined,
+            limitNum:undefined
           }
       },
       methods:{
           nextStep(){
             if(this.current==0){
-              if(this.courseSelected===null) return;
+              if(this.courseSelected===undefined) return;
               this.current++;
               this.currentStep = "step2"
             }else if(this.current==1){
-              if(this.grade===null||this.term===null||this.limitNum===0) return;
+              console.log(
+                this.grade,
+                this.term,
+                this.limitNum
+              )
+              if(this.grade===undefined||this.term===undefined||this.limitNum===undefined) return;
               this.current++;
               releaseCourseHttp(this.courseSelected.id, this.grade, this.limitNum, this.term).then(data=>{
                 this.$Message.success(data);
               }).catch(err=>{this.$Message.error(err); }).finally(()=>{
                 this.current =0;
                 this.currentStep = "step1"
-                this.courseSelected= null
-                this.grade=null
-                this.term=null
-                this.limitNum=0
+                this.courseSelected= undefined
+                this.grade=undefined
+                this.term=undefined
+                this.limitNum=undefined
               })
             }
 

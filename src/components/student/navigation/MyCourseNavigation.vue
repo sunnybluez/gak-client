@@ -1,37 +1,34 @@
 <template>
   <Layout class="main-content">
     <Sider style="width: 260px;min-width:0px;max-width: 1000px;flex:none;padding: 5px" class="main-content-menu" hide-trigger>
-      <Menu class="student-navigation"  :open-names="['1']">
+      <Menu class="teacher-navigation" :open-names="['1']">
 
         <Submenu name="1">
           <template slot="title">
             <Icon type="ios-cog" />
             2019-Spring
           </template>
-          <MenuItem v-for="(value, key, index) in courseList1"
-                    :name="1-(index+1)"
-                    :key="index">{{key}} - {{value}}</MenuItem>
+         <router-link   v-for="(value, key, index) in courseList1" :to="{path:'/studentHome/MyCourse/CurrentTerm',query:{term:'SPRING2019',courseReleaseId:key}}" :key="index">
+           <MenuItem :name="1-(index+1)">{{key}} - {{value}}</MenuItem>
+         </router-link>
         </Submenu>
         <Submenu name="2">
           <template slot="title">
             <Icon type="ios-cog" />
             2018-Autumn
           </template>
-          <MenuItem v-for="(value, key, index) in courseList2"
-                    :name="2-(index+1)"  :key="index">
-            {{key}} - {{value}}
-          </MenuItem>
+          <router-link v-for="(value, key, index) in courseList2" :to="{path:'/studentHome/MyCourse/PreviousTerm',query:{term:'AUTUMN2018',courseReleaseId:key}}" :key="index">
+            <MenuItem :name="2-(index+1)">{{key}} - {{value}}</MenuItem>
+          </router-link>
         </Submenu>
         <Submenu name="3">
           <template slot="title">
             <Icon type="ios-cog" />
             2018-Spring
           </template>
-          <MenuItem v-for="(value, key, index) in courseList3"
-                    :name="3-(index+1)"  :key="index">
-            {{key}} - {{value}}
-
-          </MenuItem>
+          <router-link v-for="(value, key, index) in courseList3" :to="{path:'/studentHome/MyCourse/PreviousTerm',query:{term:'SPRING2018',courseReleaseId:key}}" :key="index">
+            <MenuItem :name="3-(index+1)">{{key}} - {{value}}</MenuItem>
+          </router-link>
         </Submenu>
       </Menu>
     </Sider>
@@ -64,6 +61,8 @@
         getAllMyOnCourseByTerm(this.$store.getters.getUser.id, "SPRING2018").then(data=>{
           this.courseList3 = data;
         }).catch(err=>{this.$Message.warning(err);});
+      },
+      methods:{
       }
     }
 </script>
@@ -92,11 +91,11 @@
     /*display: inline;*/
   }
 
-  .student-navigation {
+  .teacher-navigation {
     margin: 0 auto;
     width: 80%;
   }
-  .student-navigation:after {
+  .teacher-navigation:after {
     content: none;
   }
 </style>

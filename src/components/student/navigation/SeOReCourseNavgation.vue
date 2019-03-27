@@ -1,7 +1,7 @@
 <template>
   <Layout class="main-content">
     <Sider style="width: 260px;min-width:0px;max-width: 1000px;flex:none;padding: 5px" class="main-content-menu" hide-trigger>
-      <Menu class="student-navigation" :open-names="['1']">
+      <Menu class="teacher-navigation" :open-names="['1']">
 
         <Submenu name="1">
           <template slot="title">
@@ -70,11 +70,11 @@
     /*display: inline;*/
   }
 
-  .student-navigation {
+  .teacher-navigation {
     margin: 0 auto;
     width: 80%;
   }
-  .student-navigation:after {
+  .teacher-navigation:after {
     content: none;
   }
   .main-con{

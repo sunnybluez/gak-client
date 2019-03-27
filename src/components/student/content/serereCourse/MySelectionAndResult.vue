@@ -24,8 +24,8 @@
 
 <script>
   import expandRow from './tableExpand/table-expand.vue';
-  import {getAllSelectedCourseHttp,getAllFailedCourseHttp,getAllOngoingCourseHttp} from '../../../axios/studentRequest';
-  import {reelectCourseHttp,dropCourseHttp} from "../../../axios/studentRequest";
+  import {getAllSelectedCourseHttp,getAllFailedCourseHttp,getAllOngoingCourseHttp} from '../../../../axios/studentRequest';
+  import {reelectCourseHttp,dropCourseHttp} from "../../../../axios/studentRequest";
     export default {
         name: "MySelectionAndResult",
       components: { expandRow },

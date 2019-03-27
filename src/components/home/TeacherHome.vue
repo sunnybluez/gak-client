@@ -18,7 +18,7 @@
                   <a style="color: black">创建/发布课程</a>
                 </MenuItem>
               </router-link>
-              <router-link to="/" style="display: inline-block">
+              <router-link to="/teacherHome/courseManage" style="display: inline-block">
                 <MenuItem name="2">
                   <Icon type="ios-person" />
                   <a style="color: black">课程管理</a>

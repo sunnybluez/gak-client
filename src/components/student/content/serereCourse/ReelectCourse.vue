@@ -6,7 +6,7 @@
 
 <script>
   import expandRow from "./tableExpand/table-expand"
-  import {getAllCanReelectCourseHttp, reelectCourseHttp} from "../../../axios/studentRequest";
+  import {getAllCanReelectCourseHttp, reelectCourseHttp} from "../../../../axios/studentRequest";
   export default {
     name: "ReelectCourse",
     components: { expandRow },

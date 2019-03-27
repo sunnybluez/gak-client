@@ -186,4 +186,46 @@ export const getAllBeginCRHttp = (teacherId) => {
 
 };
 
+export const getAllBeginClassHttp = (teacherId,term) => {
+  // console.log(111,limitNum)
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: '/courseInfo/getAllBeginClassByTerm',
+      params: {
+        teacherId: parseInt(teacherId),
+        term:term
+      }
+    }).then((response) => {
+      resolve(response.data);
+    }).catch((error) => {
+      reject(error.response.data.message);
+
+    })
+  });
+
+};
+
+
+
+export const postCourseWareHttp = (file,courseReleaseId)=>{
+  let forms = new FormData();
+  forms.append("file", file);
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'post',
+      url: '/fileStream/uploadCourseWare',
+      headers:{'Content-Type':'multipart/form-data'},
+      params:{
+        courseReleaseId:courseReleaseId
+      },
+      data:forms
+    }).then((response) => {
+      resolve(response.data);
+    }).catch((error) => {
+      reject(error.response.data.message);
+    })
+  });
+}
+
 

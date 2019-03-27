@@ -7,17 +7,24 @@ import teacherHome from '@/components/home/TeacherHome'
 import managerHome from '@/components/home/ManagerHome'
 import authentication from '@/components/authentication/Authentication'
 
-import stuMyCourseNav from '@/components/student/navigation/MyCourseNavigation'
+import stuMyCourseNav from '../components/student/navigation/MyCourseNavigation'
 import stuSeOReCourseNav from '../components/student/navigation/SeOReCourseNavgation';
+import selectContent from '../components/student/content/serereCourse/SelectCourseDetail'
+import selectResult from '../components/student/content/serereCourse/MySelectionAndResult'
+import reelectCourse from '../components/student/content/serereCourse/ReelectCourse'
+import completeCourse from '../components/student/content/myCourse/CompleteCourseS'
 
-import selectContent from '../components/student/content/SelectCourseDetail'
-import selectResult from '../components/student/content/MySelectionAndResult'
-import reelectCourse from '../components/student/content/ReelectCourse'
+import partialCourse from '../components/student/content/myCourse/PartialCourse'
+
 
 import teaNavCORCourse from  '@/components/teacher/navigation/CORCourseNavigation'
 import teaCreateCourse from '../components/teacher/content/coromCourse/CreCourseDetail'
 import teaReleaseCourse from '../components/teacher/content/coromCourse/ReleCourseDetail'
 import courseStateManage from '../components/teacher/content/coromCourse/CourseStateManage'
+import courseManage from '../components/teacher/navigation/CourseManage';
+import completeCourseManage from '../components/teacher/content/courseManage/CompleteCourse';
+
+
 
 
 Vue.use(Router)
@@ -62,7 +69,21 @@ export default new Router({
           path:'/studentHome/myCourse',
           components:{
             "student-all-nav":stuMyCourseNav
-          }
+          },
+          children:[
+            {
+              path:'/studentHome/MyCourse/CurrentTerm',
+              components:{
+                "content":completeCourse
+              }
+            },
+            {
+              path:'/studentHome/MyCourse/PreviousTerm',
+              components:{
+                "content":partialCourse
+              }
+            }
+          ]
         },
         {
           path:'/studentHome/selectCourse',
@@ -98,7 +119,7 @@ export default new Router({
       components:{
         'homePage':teacherHome
       },
-
+      redirect:"/teacherHome/courseManage",
       children:[
         {
           path:'/teacherHome/corCourse',
@@ -125,6 +146,20 @@ export default new Router({
                 "content":courseStateManage
               }
 
+            }
+          ]
+        },
+        {
+          path: '/teacherHome/courseManage',
+          components:{
+            "teacher-all-nav":courseManage
+          },
+          children:[
+            {
+              path:'/teacherHome/courseManage/completeCourseManage',
+              components:{
+                "content": completeCourseManage
+              }
             }
           ]
         }
