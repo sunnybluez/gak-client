@@ -56,3 +56,21 @@ export const addHomeworkHttp = (courseReleaseId,title,description,finishTime) =>
   });
 
 };
+
+export const getCourseScoreExcelHttp = (courseReleaseId)=>{
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: '/homework/getCourseScoreExcel',
+      params: {
+        courseReleaseId:parseInt(courseReleaseId)
+      }
+    }).then((response) => {
+      resolve(response.data);
+    }).catch((error) => {
+      reject(error.response.data.message);
+
+    })
+  });
+}
+

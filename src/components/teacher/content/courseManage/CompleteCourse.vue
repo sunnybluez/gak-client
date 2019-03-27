@@ -51,17 +51,24 @@
         </div>
       </TabPane>
       <TabPane label="成绩" name="score" icon="ios-ionic">
-        <Upload
-          style="width: 80%;margin: 20px auto"
-          type="drag"
-          :action="'http://localhost:8080/fileStream/uploadHomeworkScore?courseReleaseId='+courseReleaseId">
+        <div v-if="excelPath">
+          <a :href="'http://localhost:8080/'+excelPath" target="_blank">成绩表excel</a>
+        </div>
+        <div v-else>
+          <Upload
+            :before-upload="handleUploadExcel"
+            style="width: 80%;margin: 20px auto"
+            type="drag"
+            :action="'http://localhost:8080/fileStream/uploadCourseScoreExcel?courseReleaseId='+courseReleaseId">
 
-          <div style="padding: 20px 0">
-            <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
-            <p>选择或拖拽Excel文件上传</p>
-          </div>
-        </Upload>
+            <div style="padding: 20px 0">
+              <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
+              <p>选择或拖拽Excel文件上传</p>
+            </div>
+            <div v-if="excel !== null">Upload file: {{ excel.name }} <Button type="text" @click="uploadExcel" :loading="loadingStatusExcel">{{ loadingStatusExcel ? 'Uploading' : 'Click to upload' }}</Button></div>
 
+          </Upload>
+        </div>
       </TabPane>
       <TabPane label="论坛" name="bbs" icon="ios-people"></TabPane>
     </Tabs>
@@ -69,8 +76,8 @@
 </template>
 
 <script>
-  import {postCourseWareHttp} from "../../../../axios/teacherRequest";
-  import  {getCourseWareListHttp,getHomeworkListHttp,addHomeworkHttp} from  "../../../../axios/publicResourceRequest"
+  import {postCourseWareHttp,postCourseExcelHttp} from "../../../../axios/teacherRequest";
+  import  {getCourseWareListHttp,getHomeworkListHttp,addHomeworkHttp,getCourseScoreExcelHttp} from  "../../../../axios/publicResourceRequest"
     export default {
         name: "CompleteCourse",
       data(){
@@ -89,7 +96,9 @@
           newHomeWorkDescription:undefined,
           newHomeWorkFinishTime:undefined,
 
-
+          excelPath:null,
+          excel: null,
+          loadingStatusExcel: false
 
         }
       },
@@ -101,6 +110,7 @@
           this.initCourseWare();
           this.initHomework();
           this.initAddHomework();
+          this.initCourseScore();
         },
         initCourseWare(){
           getCourseWareListHttp(this.courseReleaseId).then(data=>{
@@ -124,7 +134,14 @@
           this.newHomeWorkDescription= undefined
           this.newHomeWorkFinishTime= undefined
         },
-
+        initCourseScore(){
+          getCourseScoreExcelHttp(this.courseReleaseId).then(data=>{
+            this.excelPath = data;
+            console.log("path", this.excelPath);
+          }).catch(err=>{
+            this.$Message.error(err);
+          })
+        },
 
         addNewHomework(){
           if(this.newHomeWorkTitle===undefined||this.newHomeWorkDescription===undefined||this.newHomeWorkFinishTime===null) {
@@ -154,6 +171,22 @@
             this.$Message.error(err);
           })
 
+        },
+
+        handleUploadExcel (file) {
+          this.excel = file;
+          return false;
+        },
+        uploadExcel () {
+          this.loadingStatusExcel = true;
+         postCourseExcelHttp(this.excel,this.courseReleaseId).then(data=>{
+           this.excel = null;
+           this.loadingStatusExcel = false;
+           this.$Message.success(data);
+           this.initCourseScore();
+         }).catch(err=>{
+           this.$Message.error(err);
+         })
         }
       },
       mounted(){

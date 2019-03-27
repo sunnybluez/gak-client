@@ -50,36 +50,46 @@
 
         </Modal>
         </TabPane>
-        <TabPane label="成绩" name="score" icon="ios-ionic"></TabPane>
+        <TabPane label="成绩" name="score" icon="ios-ionic">
+          <div v-if="excelPath">
+            <a :href="'http://localhost:8080/'+excelPath" target="_blank">成绩表excel</a>
+          </div>
+          <div v-else>
+              <p>暂时未发布成绩
+              </p>
+          </div>
+        </TabPane>
         <TabPane label="论坛" name="bbs" icon="ios-people"></TabPane>
       </Tabs>
     </div>
 </template>
 
 <script>
-  import  {getCourseWareListHttp,getHomeworkListHttp} from  "../../../../axios/publicResourceRequest"
+  import  {getCourseWareListHttp,getHomeworkListHttp,getCourseScoreExcelHttp} from  "../../../../axios/publicResourceRequest"
   import {uploadStudentWorkHttp,getSingleStudentWorkHttp} from "../../../../axios/studentRequest"
 
     export default {
         name: "completeCourseS",
       data(){
-          return{
-            courseReleaseId: 0,
-            courseInfo:{},
-            currentTab:"courseWare",
-            courseWareList:[],
+        return {
+          courseReleaseId: 0,
+          courseInfo: {},
+          currentTab: "courseWare",
+          courseWareList: [],
 
 
-            homeworkList: [],
+          homeworkList: [],
 
-            modal1:false,
-            currentHomework:{},
-            currentStudentWork:{},
+          modal1: false,
+          currentHomework: {},
+          currentStudentWork: {},
 
 
-            file: null,
-            loadingStatus: false,
-          }
+          file: null,
+          loadingStatus: false,
+
+          excelPath:null
+        };
       },
       methods:{
         initCourseInfo(){
@@ -88,7 +98,8 @@
           this.courseInfo = {};
 
           this.initCourseWare();
-          this.initHomework()
+          this.initHomework();
+          this.initCourseScore();
         },
 
         initCourseWare(){
@@ -110,7 +121,14 @@
             this.$Message.error(errArr);
           })
         },
-
+        initCourseScore(){
+          getCourseScoreExcelHttp(this.courseReleaseId).then(data=>{
+            this.excelPath = data;
+            console.log("path", this.excelPath);
+          }).catch(err=>{
+            this.$Message.error(err);
+          })
+        },
 
 
         loadMyWork(homework){
