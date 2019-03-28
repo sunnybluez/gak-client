@@ -7,7 +7,7 @@
         <Submenu name="1">
           <template slot="title">
             <Icon type="ios-cog" />
-            C/R
+            C/R  2019
           </template>
           <router-link to="/teacherHome/corCourse/createCourse">
             <MenuItem name="1-1">创建课程</MenuItem>

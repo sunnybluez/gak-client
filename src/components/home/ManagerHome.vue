@@ -1,35 +1,40 @@
 <template>
+<div>
   <Affix>
-    <Menu mode="horizontal" :theme="'light'" active-name="1">
-
+    <Menu mode="horizontal" :theme="'light'" active-name="2">
+      <h1 style="float: left;margin-left: 25px">Gak TSS</h1>
       <!--<MenuItem name="1">-->
       <!--<img src="../../assets/背景.png" style="width: 60px;float:left; margin: 10px 10px">-->
-      <h1 style="float: left;margin-left: 25px">Gak TSS</h1>
+
       <!--</MenuItem>-->
 
       <div class="person-div">
-        <Submenu name="4" class="menuItem person-div-item" >
-          <template slot="title">
-            <Icon type="ios-stats"/>
-            个人信息
-          </template>
-          <MenuGroup title="使用">
-            <MenuItem name="3-1">新增和启动</MenuItem>
-            <MenuItem name="3-2">活跃分析</MenuItem>
-            <MenuItem name="3-3">时段分析</MenuItem>
-          </MenuGroup>
-          <MenuGroup title="留存">
-            <MenuItem name="3-4">用户留存</MenuItem>
-            <MenuItem name="3-5">流失用户</MenuItem>
-          </MenuGroup>
-        </Submenu>
+        <div class="person-div-item">
+          <router-link to="/managerHome/approve" style="display: inline-block">
+            <MenuItem name="2">
+
+              <Icon type="ios-person" />
+              <p style="display: inline">课程管理</p>
+            </MenuItem>
+          </router-link>
+          <router-link to="/managerHome/managerStatistics" style="display: inline-block">
+            <MenuItem name="3">
+              <Icon type="ios-pie" />
+              统计信息
+            </MenuItem>
+          </router-link>
+
+        </div>
+
 
         <div class="person-div-item">
           <Dropdown>
-            <Avatar size="large" >M</Avatar>
+            <Avatar size="large">{{name}}</Avatar>
             <DropdownMenu slot="list">
-              <DropdownItem>个人信息</DropdownItem>
-              <DropdownItem>登出</DropdownItem>
+
+              <DropdownItem >
+                <p @click="logOut">登出</p>
+              </DropdownItem>
 
             </DropdownMenu>
           </Dropdown>
@@ -40,15 +45,50 @@
 
     </Menu>
   </Affix>
+  <router-view name="detail-nav"></router-view>
+</div>
 
 </template>
 
 <script>
     export default {
-        name: "ManagerHome"
+        name: "ManagerHome",
+      data(){
+          return{
+            name:"manager"
+          }
+      },
+      methods:{
+        logOut() {
+          // console.log(11)
+          this.$store.dispatch("setUser", {});
+          this.$store.dispatch("setToken", "");
+          this.$router.push("/login");
+        }
+      },
     }
 </script>
 
 <style scoped>
+  .person-div {
+    display: flex;
+    float: right;
+    margin-right: 30px;
+  }
+  .person-div-item{
+    display: inline;
+    margin: 0 15px;
+    cursor: default;
+  }
+  .header-all {
+    background: #fff;
+    padding: 0px;
+    height: auto;
+    margin-bottom: 15px;
+  }
+  .main-body {
+    background: #fff;
+    text-align: center;
 
+  }
 </style>

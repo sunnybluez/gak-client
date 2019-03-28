@@ -50,7 +50,7 @@
 
         </div>
       </TabPane>
-      <TabPane label="成绩" name="score" icon="ios-ionic">
+      <TabPane label="成绩/群发" name="score" icon="ios-ionic">
         <div v-if="excelPath">
           <a :href="'http://localhost:8080/'+excelPath" target="_blank">成绩表excel</a>
         </div>
@@ -69,6 +69,26 @@
 
           </Upload>
         </div>
+        <div>
+          <Button @click="modal1 = true">群发邮件</Button>
+          <Modal v-model="modal1" fullscreen title="编辑邮件" @on-ok="groupSend">
+            <div style="width: 50%;margin: 0 auto">
+              <Divider>主题</Divider>
+              <div>
+                主题：
+                <Input v-model="emailSubject" prefix="ios-mail" placeholder="Enter ..." style="width: auto" />
+              </div>
+
+              <Divider />
+              <Divider />
+              <Divider orientation="left">编辑内容</Divider>
+              <div >
+                <Input v-model="emailContent" type="textarea" :autosize="{minRows: 10,maxRows: 20}" placeholder="Enter something..." />
+              </div>
+
+            </div>
+          </Modal>
+        </div>
       </TabPane>
       <TabPane label="论坛" name="bbs" icon="ios-people"><Bbs :courseId="this.$route.query.courseReleaseId"></Bbs></TabPane>
     </Tabs>
@@ -76,7 +96,7 @@
 </template>
 
 <script>
-  import {postCourseWareHttp,postCourseExcelHttp} from "../../../../axios/teacherRequest";
+  import {postCourseWareHttp, postCourseExcelHttp, groupSendEmailHttp} from "../../../../axios/teacherRequest";
   import  {getCourseWareListHttp,getHomeworkListHttp,addHomeworkHttp,getCourseScoreExcelHttp} from  "../../../../axios/publicResourceRequest"
   import Bbs from "../../../bbs/Bbs";
     export default {
@@ -100,11 +120,28 @@
 
           excelPath:null,
           excel: null,
-          loadingStatusExcel: false
+          loadingStatusExcel: false,
+
+          modal1:false,
+          emailContent: "",
+          emailSubject: ""
 
         }
       },
       methods:{
+          groupSend(){
+
+            groupSendEmailHttp(this.courseReleaseId, this.emailContent, this.emailSubject).then(data=>{
+              this.$Message.success(data);
+            }).catch(err=>{
+              this.$Message.error(err);
+            })
+
+            this.modal1 = false;
+            this.emailContent = "";
+            this.emailSubject = "";
+          },
+
         initCourseInfo(){
           this.courseReleaseId = this.$route.query.courseReleaseId;
           this.currentTab = "courseWare";

@@ -8,7 +8,7 @@ export const createCourseHttp = (teacherId, courseName, courseDescription) => {
       url: '/courseOperation/createCourse',
       data: {
         teacherId: teacherId,
-        currentCourseName: courseName,
+        courseName: courseName,
         courseDescription: courseDescription
       }
     }).then((response) => {
@@ -287,4 +287,58 @@ export const updateTeacherInfoHttp = (teacherId, name, age, sex, phoneNum) => {
   });
 
 };
+export const getTeacherReleaseCourseLogHttp = (teacherId) =>{
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: '/statistics/getTeacherReleaseCourseLog',
+      params:{
+        teacherId:parseInt(teacherId),
+      }
+    }).then((response) => {
+      // callback(response.data);
+      resolve(response.data);
+    }).catch((error) => {
+      // _this.$Message.warning(error.response.data.message);
+      reject(error.response.data.message);
+    })
+  });
+}
+export const getTeacherCreateCourseLogHttp = (teacherId) =>{
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: '/statistics/getTeacherCreateCourseLog',
+      params:{
+        teacherId:parseInt(teacherId),
+      }
+    }).then((response) => {
+      // callback(response.data);
+      resolve(response.data);
+    }).catch((error) => {
+      // _this.$Message.warning(error.response.data.message);
+      reject(error.response.data.message);
+    })
+  });
+}
+export const groupSendEmailHttp = (courseReleaseId,content,subject) => {
 
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'post',
+      url: '/courseOperation/groupSendEmail',
+      data: {
+        courseReleaseId: parseInt(courseReleaseId),
+        content:content,
+        subject: subject
+
+      }
+    }).then((response) => {
+      resolve(response.data);
+    }).catch((error) => {
+      reject(error.response.data.message);
+
+    })
+  });
+
+};

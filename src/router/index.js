@@ -27,7 +27,11 @@ import courseStateManage from '../components/teacher/content/coromCourse/CourseS
 import courseManage from '../components/teacher/navigation/CourseManage';
 import completeCourseManage from '../components/teacher/content/courseManage/CompleteCourse';
 
+import teacherStatistics from "../components/statistics/TeacherStatistics";
+import studentStatistics from "../components/statistics/StudentStatistics";
+import managerStatistics from "../components/statistics/ManagerStatistics";
 
+import managerApprove from "../components/manager/ManagerApprove";
 
 
 Vue.use(Router)
@@ -120,6 +124,13 @@ export default new Router({
             "student-all-nav":studentInfo
           },
 
+        },
+        {
+          path:'/studentHome/studentStatistics',
+          components:{
+            "student-all-nav":studentStatistics
+          },
+
         }
       ]
 
@@ -179,6 +190,12 @@ export default new Router({
             "teacher-all-nav":teacherInfo
           },
 
+        },
+        {
+          path:'/teacherHome/teacherStatistics',
+          components:{
+            "teacher-all-nav":teacherStatistics
+          },
         }
       ]
     },
@@ -186,7 +203,23 @@ export default new Router({
       path: '/managerHome',
       components:{
         'homePage':managerHome
-      }
+      },
+      redirect:"/managerHome/approve",
+      children:[
+        {
+          path:'/managerHome/approve',
+          components:{
+            "detail-nav":managerApprove
+          },
+        },
+        {
+          path:'/managerHome/managerStatistics',
+          components:{
+            "detail-nav":managerStatistics
+          },
+        },
+
+      ]
     },
     {
       path: '/authentication',

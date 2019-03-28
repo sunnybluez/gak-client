@@ -295,12 +295,12 @@ export const updateStudentInfoHttp = (studentId, name, age, sex, phoneNum, grade
 
 }
 
-export const cancelAccountHttp = (studentId)=>{
+export const cancelAccountHttp = (studentId)=> {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
       url: '/cancelAccount',
-      params:{
+      params: {
         id: parseInt(studentId),
       }
     }).then((response) => {
@@ -310,6 +310,26 @@ export const cancelAccountHttp = (studentId)=>{
 
     })
   });
-
 }
+
+export const getAllMyCourseOperationHttp = (studentId) =>{
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: '/statistics/getAllMyCourseOperation',
+      params:{
+        studentId:parseInt(studentId),
+      }
+    }).then((response) => {
+      resolve(response.data);
+    }).catch((error) => {
+      reject(error.response.data.message);
+    })
+  });
+}
+
+
+
+
+
 

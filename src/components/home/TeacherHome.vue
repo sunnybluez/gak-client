@@ -24,7 +24,7 @@
                   <a style="color: black">课程管理</a>
                 </MenuItem>
               </router-link>
-              <router-link to="/" style="display: inline-block">
+              <router-link to="/teacherHome/teacherStatistics" style="display: inline-block">
                 <MenuItem name="3">
                   <Icon type="ios-pie" />
                   统计信息
